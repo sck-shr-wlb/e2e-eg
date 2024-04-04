@@ -43,7 +43,7 @@
 							"    var jsonData = pm.response.json();",
 							"    let counter = pm.collectionVariables.get(\"counter\");",
 							"",
-							"    if(counter < 3) {",
+							"    if(counter < 4) {",
 							"        pm.expect(jsonData.status).to.eql(\"processing\");",
 							"        postman.setNextRequest(\"check-status\");",
 							"    } else {",
