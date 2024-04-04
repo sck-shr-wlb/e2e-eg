@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "6275d106-a859-43a9-b04f-56254a0e832a",
+		"name": "sck-shoping-mall-level2",
+		"description": "ทดสอบการสั่งซื้อสินค้า",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3572919"
+	},
+	"item": [
+		{
+			"name": "search-product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ตรวจสอบสถานะของ Search Status code ต้องเท่ากับ 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time ของ Search ต้องน้อยกว่าหรือเท่ากับ 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(data.expected.responseTime);",
+							"});",
+							"",
+							"const expectedProductName = data.expected.productName;",
+							"pm.test(\"ตรวจสอบชื่อสินค้า \" + expectedProductName, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.products[0].product_name).to.eql(expectedProductName);",
+							"});",
+							"",
+							"const productPrice = data.expected.productPrice;",
+							"pm.test(\"ตรวจสอบราคาสินค้า Balance Training Bicycle ต้องเท่ากับ \" + productPrice + \" US Dollar\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.products[0].product_price).to.eql(productPrice);",
+							"});",
+							"",
+							"const productPriceThb = data.expected.productPriceThb;",
+							"pm.test(\"ตรวจสอบราคาสินค้า Balance Training Bicycle ต้องเท่ากับ \" + productPriceThb+ \" TH Baht\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.products[0].product_price_thb).to.eql(productPriceThb);",
+							"});",
+							"",
+							"const total = data.expected.total;",
+							"pm.test(\"ตรวจสอบจำนวน Product ที่ค้นพบต้องเท่ากับ \" + total, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.total).to.eql(total);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/product?q={{q}}&offset={{offset}}&limit={{limit}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"product"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{q}}"
+						},
+						{
+							"key": "offset",
+							"value": "{{offset}}"
+						},
+						{
+							"key": "limit",
+							"value": "{{limit}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/v1/product?q=Bicycle&offset=0&limit=20",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Bicycle"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total\": 29,\n    \"products\": [\n        {\n            \"id\": 1,\n            \"product_name\": \"Balance Training Bicycle\",\n            \"product_price\": 119.95,\n            \"product_price_thb\": 4314.6,\n            \"product_price_full_thb\": 4314.597182,\n            \"product_image\": \"/Balance_Training_Bicycle.png\"\n        },\n        {\n            \"id\": 10,\n            \"product_name\": \"Princess Training Bicycle\",\n            \"product_price\": 119.95,\n            \"product_price_thb\": 4314.6,\n            \"product_price_full_thb\": 4314.597182,\n            \"product_image\": \"/Princess_Training_Bicycle.png\"\n        },\n        {\n            \"id\": 458,\n            \"product_name\": \"BICYCLE Playing Dices\",\n            \"product_price\": 3.81,\n            \"product_price_thb\": 137.05,\n            \"product_price_full_thb\": 137.045563,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 1111,\n            \"product_name\": \"Neca - The Walking Dead Bust Bicycle Girl Zombie 17 cm\",\n            \"product_price\": 1,\n            \"product_price_thb\": 35.97,\n            \"product_price_full_thb\": 35.969964,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 1140,\n            \"product_name\": \"Walking Dead TV Series 2 Bicycle Girl Zombie Action Figure\",\n            \"product_price\": 1,\n            \"product_price_thb\": 35.97,\n            \"product_price_full_thb\": 35.969964,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5190,\n            \"product_name\": \"Reversed Back Bicycle Deck - Red (2nd Generation)\",\n            \"product_price\": 6.99,\n            \"product_price_thb\": 251.43,\n            \"product_price_full_thb\": 251.430048,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5195,\n            \"product_name\": \"Bicycle Playing Cards - Poker Size, Orange Backs\",\n            \"product_price\": 6.8,\n            \"product_price_thb\": 244.6,\n            \"product_price_full_thb\": 244.595755,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5204,\n            \"product_name\": \"RARE Karnival Bicycle Inferno Deck Uncut Sheet Poster\",\n            \"product_price\": 27.99,\n            \"product_price_thb\": 1006.8,\n            \"product_price_full_thb\": 1006.799292,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5212,\n            \"product_name\": \"RED Back BLANK Face Magic Playing Cards by Bicycle\",\n            \"product_price\": 5.99,\n            \"product_price_thb\": 215.46,\n            \"product_price_full_thb\": 215.460084,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5225,\n            \"product_name\": \"Bicycle Gold Dragon Deck Playing Cards\",\n            \"product_price\": 3.91,\n            \"product_price_thb\": 140.64,\n            \"product_price_full_thb\": 140.642559,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5243,\n            \"product_name\": \"Bicycle Nautic Back Playing Cards\",\n            \"product_price\": 6.49,\n            \"product_price_thb\": 233.45,\n            \"product_price_full_thb\": 233.445066,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5246,\n            \"product_name\": \"Arcane Deck, Bicycle Playing Cards by Ellusionist, black\",\n            \"product_price\": 7.49,\n            \"product_price_thb\": 269.42,\n            \"product_price_full_thb\": 269.41503,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5255,\n            \"product_name\": \"Doctor Jekyll Deck Bicycle Playing Cards\",\n            \"product_price\": 5.05,\n            \"product_price_thb\": 181.65,\n            \"product_price_full_thb\": 181.648318,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5271,\n            \"product_name\": \"BICYCLE Warrior Horse\",\n            \"product_price\": 5.25,\n            \"product_price_thb\": 188.84,\n            \"product_price_full_thb\": 188.842311,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5316,\n            \"product_name\": \"Bicycle Alchemy II Deck\",\n            \"product_price\": 5.95,\n            \"product_price_thb\": 214.02,\n            \"product_price_full_thb\": 214.021286,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5337,\n            \"product_name\": \"Dragon Back Green - Bicycle by USPCC\",\n            \"product_price\": 8.15,\n            \"product_price_thb\": 293.16,\n            \"product_price_full_thb\": 293.155207,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5358,\n            \"product_name\": \"Mirage Deck, Blue Back Bicycle Cards\",\n            \"product_price\": 8.56,\n            \"product_price_thb\": 307.9,\n            \"product_price_full_thb\": 307.902892,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5381,\n            \"product_name\": \"Bicycle 80's Deckades, Party Starters - Trivia and Playing Cards\",\n            \"product_price\": 2.3,\n            \"product_price_thb\": 82.73,\n            \"product_price_full_thb\": 82.730917,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5382,\n            \"product_name\": \"Bicycle Warrior Horse Deck by USPCC - Trick\",\n            \"product_price\": 2.84,\n            \"product_price_thb\": 102.15,\n            \"product_price_full_thb\": 102.154698,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        },\n        {\n            \"id\": 5398,\n            \"product_name\": \"Bicycle 125th Anniversary Edition Playing Cards, Poker Size - Blue\",\n            \"product_price\": 7.5,\n            \"product_price_thb\": 269.77,\n            \"product_price_full_thb\": 269.77473,\n            \"product_image\": \"/Snoopy_Sno_Cone_Machine.png\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "view-product-detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ตรวจสอบสถานะของ View Product Detail ต้องเท่ากับ 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time ของ View Product Detail ต้องน้อยกว่าหรือเท่ากับ 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"pm.test(\"Product ID ต้องเท่ากับ 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"const expectedProductName = data.expected.productName;",
+							"pm.test(\"Product Name ต้องเท่ากับ \" + expectedProductName, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_name).to.eql(expectedProductName);",
+							"});",
+							"",
+							"const productPrice = data.expected.productPrice;",
+							"pm.test(\"Product Price(US Dollar) ต้องเท่ากับ \" + productPrice, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_price).to.eql(productPrice);",
+							"});",
+							"",
+							"const productPriceThb = data.expected.productPriceThb;",
+							"pm.test(\"Product Price THB(TH Baht) ต้องเท่ากับ \" + productPriceThb, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_price_thb).to.eql(productPriceThb);",
+							"});",
+							"",
+							"const productPriceFullThb = data.expected.productPriceFullThb;",
+							"pm.test(\"Product Price Full THB(TH Baht) ต้องเท่ากับ \" + productPriceFullThb, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_price_full_thb).to.eql(productPriceFullThb);",
+							"});",
+							"",
+							"const productImage = data.expected.productImage;",
+							"pm.test(\"Product Image ต้องเท่ากับ \" + productImage, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.product_image).to.eql(productImage);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/product/{{productId}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"{{productId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order-product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ตรวจสอบสถานะของ Order Product ต้องเท่ากับ 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time ของ Order Product ต้องน้อยกว่าหรือเท่ากับ 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"ตรวจสอบค่า Order ID ต้องไม่เท่ากับค่าว่าง \" + jsonData.order_id, function () { ",
+							"    pm.expect(jsonData.order_id).not.undefined;",
+							"",
+							"    pm.collectionVariables.set(\"order_id\", jsonData.order_id);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cart\": [\n        {\n            \"product_id\": {{productId}},\n            \"quantity\": {{quantity}}\n        }\n    ],\n    \"burn_point\": {{burnPoint}},\n    \"sub_total_price\": {{subTotalPrice}},\n    \"discount_price\": {{discountPrice}},\n    \"total_price\": {{totalPrice}},\n    \"shipping_method_id\": {{shippingMethodId}},\n    \"shipping_address\": \"{{shippingAddress}}\",\n    \"shipping_sub_district\": \"{{shippingSubDistrict}}\",\n    \"shipping_district\": \"{{shippingDistrict}}\",\n    \"shipping_province\": \"{{shippingProvince}}\",\n    \"shipping_zip_code\": \"{{shippingZipCode}}\",\n    \"recipient_first_name\": \"{{recipientFirstName}}\",\n    \"recipient_last_name\": \"{{recipientLastName}}\",\n    \"recipient_phone_number\": \"{{recipientPhoneNumber}}\",\n    \"payment_method_id\": {{paymentMethodId}},\n    \"payment_information\": {\n        \"card_name\": \"{{cardName}}\",\n        \"card_number\": \"{{4719700591590995}}\",\n        \"expire_date\": \"{{expireDate}}\",\n        \"cvv\": \"{{cvv}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/order",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "confirm-payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ตรวจสอบสถานะของ Confirm Payment ต้องเท่ากับ 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time ของ Confirm Payment ต้องน้อยกว่าหรือเท่ากับ 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"pm.test(\"ตรวจสอบ Order ID ต้องเท่ากับ Order ID ที่ได้รับมาจาก Order Request\", function () {",
+							"    const expectedOrderId = pm.collectionVariables.get(\"order_id\");",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.order_id).to.eql(expectedOrderId);",
+							"});",
+							"",
+							"const trackingNumberPrefix = data.expected.trackingNumberPrefix;",
+							"pm.test(\"ตรวจสอบ Tracking Number ต้องขึ้นต้นด้วย \" + trackingNumberPrefix, function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.tracking_number).to.have.string(trackingNumberPrefix);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order_id\": {{order_id}},\n  \"otp\": {{otp}},\n  \"ref_otp\": \"{{refOtp}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/confirmPayment",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"confirmPayment"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://188.166.247.72"
+		},
+		{
+			"key": "order_id",
+			"value": ""
+		}
+	]
+}

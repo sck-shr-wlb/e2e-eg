@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="sck-shoping-mall" tests="4" time="0.847">
+  <testsuite name="search-product" id="a0f4ea70-edee-45bf-877e-fc59435adfc4" timestamp="2024-04-03T08:26:06.016Z" tests="6" failures="0" errors="0" time="0.406">
+    <testcase name="ตรวจสอบสถานะของ Search Status code ต้องเท่ากับ 200" time="0.406" classname="SckShopingMall"/>
+    <testcase name="Response time ของ Search ต้องน้อยกว่าหรือเท่ากับ 500ms" time="0.406" classname="SckShopingMall"/>
+    <testcase name="ตรวจสอบชื่อสินค้า Balance Training Bicycle" time="0.406" classname="SckShopingMall"/>
+    <testcase name="ตรวจสอบราคาสินค้า Balance Training Bicycle ต้องเท่ากับ 119.95 US Dollar" time="0.406" classname="SckShopingMall"/>
+    <testcase name="ตรวจสอบราคาสินค้า Balance Training Bicycle ต้องเท่ากับ 4314.60 TH Baht" time="0.406" classname="SckShopingMall"/>
+    <testcase name="ตรวจสอบจำนวน Product ที่ค้นพบต้องเท่ากับ 29" time="0.406" classname="SckShopingMall"/>
+  </testsuite>
+  <testsuite name="view-product-detail" id="b0c1cd01-1612-43f1-ab2c-d9c83de57c3f" timestamp="2024-04-03T08:26:06.016Z" tests="8" failures="0" errors="0" time="0.040">
+    <testcase name="ตรวจสอบสถานะของ View Product Detail ต้องเท่ากับ 200" time="0.040" classname="SckShopingMall"/>
+    <testcase name="Response time ของ View Product Detail ต้องน้อยกว่าหรือเท่ากับ 500ms" time="0.040" classname="SckShopingMall"/>
+    <testcase name="Product ID ต้องเท่ากับ 1" time="0.040" classname="SckShopingMall"/>
+    <testcase name="Product Name ต้องเท่ากับ Balance Training Bicycle" time="0.040" classname="SckShopingMall"/>
+    <testcase name="Product Price(US Dollar) ต้องเท่ากับ 119.95" time="0.040" classname="SckShopingMall"/>
+    <testcase name="Product Price THB(TH Baht) ต้องเท่ากับ 4314.60" time="0.040" classname="SckShopingMall"/>
+    <testcase name="Product Price Full THB(TH Baht) ต้องเท่ากับ 4314.597182" time="0.040" classname="SckShopingMall"/>
+    <testcase name="Product Image ต้องเท่ากับ /Balance_Training_Bicycle.png" time="0.040" classname="SckShopingMall"/>
+  </testsuite>
+  <testsuite name="order-product" id="b134a966-41c5-4316-a033-1bfa6aedbb61" timestamp="2024-04-03T08:26:06.016Z" tests="3" failures="0" errors="0" time="0.067">
+    <testcase name="ตรวจสอบสถานะของ Order Product ต้องเท่ากับ 200" time="0.067" classname="SckShopingMall"/>
+    <testcase name="Response time ของ Order Product ต้องน้อยกว่าหรือเท่ากับ 500ms" time="0.067" classname="SckShopingMall"/>
+    <testcase name="ตรวจสอบค่า Order ID ต้องไม่เท่ากับค่าว่าง 219" time="0.067" classname="SckShopingMall"/>
+  </testsuite>
+  <testsuite name="confirm-payment" id="db826ee0-cb12-42bd-8d3b-871f1a225162" timestamp="2024-04-03T08:26:06.016Z" tests="4" failures="0" errors="0" time="0.334">
+    <testcase name="ตรวจสอบสถานะของ Confirm Payment ต้องเท่ากับ 200" time="0.334" classname="SckShopingMall"/>
+    <testcase name="Response time ของ Confirm Payment ต้องน้อยกว่าหรือเท่ากับ 500ms" time="0.334" classname="SckShopingMall"/>
+    <testcase name="ตรวจสอบ Order ID ต้องเท่ากับ Order ID ที่ได้รับมาจาก Order Request" time="0.334" classname="SckShopingMall"/>
+    <testcase name="ตรวจสอบ Tracking Number ต้องขึ้นต้นด้วย KR" time="0.334" classname="SckShopingMall"/>
+  </testsuite>
+</testsuites>
